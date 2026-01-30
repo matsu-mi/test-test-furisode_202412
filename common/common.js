@@ -31,14 +31,14 @@ $('a[href^="#"]').click(function() {
 //  回転スライダー
 //--------------------
 const images = [
-    'images/slider-beaut-01.jpg',
-    'images/slider-beaut-02.jpg',
-    'images/slider-beaut-03.jpg',
-    'images/slider-beaut-04.jpg',
-    'images/slider-beaut-05.jpg',
-    'images/slider-beaut-06.jpg',
-    'images/slider-beaut-07.jpg',
-    'images/slider-beaut-08.jpg'
+    'images/slider-beaut-01_20260202.jpg',
+    'images/slider-beaut-02_20260202.jpg',
+    'images/slider-beaut-03_20260202.jpg',
+    'images/slider-beaut-04_20260202.jpg',
+    'images/slider-beaut-05_20260202.jpg',
+    'images/slider-beaut-06_20260202.jpg',
+    'images/slider-beaut-07_20260202.jpg',
+    'images/slider-beaut-08_20260202.jpg'
 ];
 
 let currentIndex = 0;

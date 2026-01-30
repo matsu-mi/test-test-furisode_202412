@@ -753,49 +753,39 @@ a p img {
    スマホ対応
 ========================================================= */
 @media (max-width: 600px) {
-  /* 全体のレイアウト */
+  /* 外枠：中身（スライダー）を完全にセンターへ */
   .fixed-slider-layout {
-    display: block !important; /* flexを解除して制御しやすくします */
-    position: relative;        /* タイトル配置の基準にする */
+    display: flex !important;
+    justify-content: center; /* 左右中央 */
+    align-items: center;     /* 上下中央 */
     width: 100%;
-    padding: 60px 0;           /* 上下の余白 */
-    overflow: visible;         /* タイトルがはみ出しても隠さない */
+    padding: 40px 0;
+    overflow: hidden;
   }
 
-  /* スライダーの枠：ここを自力で真ん中に置く */
+  /* スライダー：サイズを固定し、余計なマージンを排除 */
   .slider-perspective {
-    width: 75vw !important;    /* 100vwだと画面いっぱいすぎるので少し絞るのがおすすめ */
-    max-width: 320px;
+    /* 幅と高さの比率を維持 */
+    width: 75vw !important;  /* 画面幅の75%（お好みで80vwなどに広げてください） */
+    max-width: 350px;
     aspect-ratio: 3 / 4.2;
-    height: auto !important;
-    margin: 0 auto !important; /* ★左右オートで確実にセンターへ */
+    
+    /* センター配置のための設定 */
+    margin: 0 !important;    /* 親のflexで中央にするのでmarginは0でOK */
     position: relative;
     border-radius: 60px;
     overflow: hidden;
     z-index: 1;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 影をつけると立体感が出ます */
+    
+    /* 浮き上がらせる影（お好みで） */
+    /* box-shadow: 0 10px 30px rgba(0,0,0,0.1); */
   }
 
-  /* 右側のタイトルエリア：スライダーの右側に絶対配置で添える */
-  .fixed-title-area {
-    position: absolute;
-    top: 50%;
-    right: 5%;                 /* 画面右端からの位置 */
-    transform: translateY(-50%);
-    z-index: 2;
-    pointer-events: none;      /* 文字がクリックを邪魔しないように */
-  }
-  
-  .fixed-title-area img {
-    height: 60vw !important;   /* 画面幅に合わせたサイズ感 */
-    max-height: 280px;
-    width: auto;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); /* 文字を見やすく */
-  }
-
-  /* ガイド（矢印）の位置 */
-  .swipe-guide {
-    text-align: center;
-    margin-top: 15px;
+  /* 中の画像 */
+  .slider-perspective img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
   }
 }
