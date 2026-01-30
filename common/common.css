@@ -753,48 +753,49 @@ a p img {
    スマホ対応
 ========================================================= */
 @media (max-width: 600px) {
-  /* 全体のレイアウト：横揺れを防ぐ */
+  /* 全体のレイアウト */
   .fixed-slider-layout {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 0;
-    width: 100vw;
-    overflow: hidden;
+    display: block !important; /* flexを解除して制御しやすくします */
+    position: relative;        /* タイトル配置の基準にする */
+    width: 100%;
+    padding: 60px 0;           /* 上下の余白 */
+    overflow: visible;         /* タイトルがはみ出しても隠さない */
   }
 
-  /* スライダーの枠：幅を指定して、高さは比率(aspect-ratio)で自動決定 */
+  /* スライダーの枠：ここを自力で真ん中に置く */
   .slider-perspective {
-    width: 100vw !important;    /* 1. 画面幅の75%（これで細すぎを解消） */
-    max-width: 380px;         /* 大きくなりすぎない制限 */
-    aspect-ratio: 3 / 4.2;    /* 2. 振袖が綺麗に見える「黄金比」に固定 */
-    height: auto !important;  /* 3. 固定の高さを解除して比率に従わせる */
-    margin: 0 auto;
+    width: 75vw !important;    /* 100vwだと画面いっぱいすぎるので少し絞るのがおすすめ */
+    max-width: 320px;
+    aspect-ratio: 3 / 4.2;
+    height: auto !important;
+    margin: 0 auto !important; /* ★左右オートで確実にセンターへ */
     position: relative;
     border-radius: 60px;
     overflow: hidden;
     z-index: 1;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 影をつけると立体感が出ます */
   }
 
-  /* 中の画像：枠の形に絶対に従わせる */
-  .slider-perspective img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important; /* 4. これで歪みが完全にとれます */
-    display: block;
-    border-radius: 60px;
-  }
-
-  /* 右側のタイトル画像：位置とサイズの微調整 */
+  /* 右側のタイトルエリア：スライダーの右側に絶対配置で添える */
   .fixed-title-area {
-    margin-left: -25px; /* スライダーとの重なり具合 */
+    position: absolute;
+    top: 50%;
+    right: 5%;                 /* 画面右端からの位置 */
+    transform: translateY(-50%);
     z-index: 2;
+    pointer-events: none;      /* 文字がクリックを邪魔しないように */
   }
   
   .fixed-title-area img {
-    height: 280px !important; /* スライダーの高さ(aspect-ratio)に合わせて調整 */
+    height: 60vw !important;   /* 画面幅に合わせたサイズ感 */
+    max-height: 280px;
     width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); /* 文字を見やすく */
+  }
+
+  /* ガイド（矢印）の位置 */
+  .swipe-guide {
+    text-align: center;
+    margin-top: 15px;
   }
 }
-
-/* wip */
