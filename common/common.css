@@ -784,7 +784,7 @@ a p img {
   /* スライダー：サイズを固定し、余計なマージンを排除 */
   .slider-perspective {
     /* 幅と高さの比率を維持 */
-    width: 90vw !important;  /* 画面幅の75%（お好みで80vwなどに広げてください） */
+    width: 95vw !important;  /* 画面幅の75%（お好みで80vwなどに広げてください） */
     max-width: 350px;
     aspect-ratio: 3 / 4.2;
     
