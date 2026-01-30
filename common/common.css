@@ -738,28 +738,33 @@ a p img {
 
 /* 右側エリア: 固定タイトル */
 .fixed-title-area {
-  width: 80px; /* タイトル画像の想定幅 */
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  /* --- ここで左側に引き寄せる --- */
-  margin-left: -50px; /* ★ここの数値を変えて好みの距離に調整してください */
-  margin-right: 0;
-  /* 重なり順で画像がスライダーの下に隠れないように念のため設定 */
-  position: relative;
-  z-index: 1;
+    width: 80px; /* タイトル画像の想定幅 */
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    /* --- ここで左側に引き寄せる --- */
+    margin-left: -50px; /* ★ここの数値を変えて好みの距離に調整してください */
+    margin-right: 0;
+    /* 重なり順で画像がスライダーの下に隠れないように念のため設定 */
+    position: relative;
+    z-index: 1;
 }
 
 .fixed-title-area img {
-  height: 500px; /* スライダーの高さに合わせる */
-  width: auto;
-  object-fit: contain; 
-  display: block; 
+    height: 500px; /* スライダーの高さに合わせる */
+    width: auto;
+    object-fit: contain; 
+    display: block; 
 }
 
 /* 子要素の並び順を反転 (右から左へ) */
 .fixed-slider-layout.reverse-order {
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+/* CSSにこれを追加 */
+.side.front, .side.back {
+    background-color: #f1cfc6; /* 振袖の背景に近い薄いグレーや白を指定 */
 }
 
 /* ======================================================
