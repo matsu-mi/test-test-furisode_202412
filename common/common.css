@@ -766,7 +766,7 @@ a p img {
   /* スライダーの枠：幅を指定して、高さは比率(aspect-ratio)で自動決定 */
   .slider-perspective {
     width: 100vw !important;    /* 1. 画面幅の75%（これで細すぎを解消） */
-    max-width: 300px;         /* 大きくなりすぎない制限 */
+    max-width: 380px;         /* 大きくなりすぎない制限 */
     aspect-ratio: 3 / 4.2;    /* 2. 振袖が綺麗に見える「黄金比」に固定 */
     height: auto !important;  /* 3. 固定の高さを解除して比率に従わせる */
     margin: 0 auto;
@@ -797,3 +797,4 @@ a p img {
   }
 }
 
+/* wip */
