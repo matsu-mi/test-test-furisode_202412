@@ -28,17 +28,17 @@ $('a[href^="#"]').click(function() {
 
 
 //--------------------
-//  回転スライダー
+//  回転スライダー1
 //--------------------
 const images = [
-    'images/slider-beaut-01_20260202.jpg',
-    'images/slider-beaut-02_20260202.jpg',
-    'images/slider-beaut-03_20260202.jpg',
-    'images/slider-beaut-04_20260202.jpg',
-    'images/slider-beaut-05_20260202.jpg',
-    'images/slider-beaut-06_20260202.jpg',
-    'images/slider-beaut-07_20260202.jpg',
-    'images/slider-beaut-08_20260202.jpg'
+    'images/slider-talent-A-01_20260202.jpg',
+    'images/slider-talent-A-02_20260202.jpg',
+    'images/slider-talent-A-03_20260202.jpg',
+    'images/slider-talent-A-04_20260202.jpg',
+    'images/slider-talent-A-05_20260202.jpg',
+    'images/slider-talent-A-06_20260202.jpg',
+    'images/slider-talent-A-07_20260202.jpg',
+    'images/slider-talent-A-08_20260202.jpg'
 ];
 
 let currentIndex = 0;
@@ -122,4 +122,252 @@ window.onload = () => {
     startTimer();
 };
 
-// fix: スマホレイアウト調整
+
+
+//--------------------
+//  回転スライダー2
+//--------------------
+(function() { // ← 他のスライダーと混ざらないための「魔法の囲い」
+    const images2 = [
+        'images/slider-noa-01_20260202.jpg',
+        'images/slider-noa-02_20260202.jpg',
+        'images/slider-noa-03_20260202.jpg',
+        'images/slider-noa-04_20260202.jpg',
+        'images/slider-noa-05_20260202.jpg',
+        'images/slider-noa-06_20260202.jpg',
+        'images/slider-noa-07_20260202.jpg',
+        'images/slider-noa-08_20260202.jpg'
+    ];
+
+    // 全ての変数名に「2」をつける
+    let currentIndex2 = 0;
+    let rotation2 = 0;
+    let isAnimating2 = false;
+    let autoTimer2;
+
+    // 要素の取得（ID名はHTMLに合わせたハイフンなし版）
+    const card2 = document.getElementById('card2');
+    const imgFront2 = document.getElementById('img-front2');
+    const imgBack2 = document.getElementById('img-back2');
+    // ボタンのIDも「2」専用にする必要があります（HTMLも確認してください）
+    const nextBtn2 = document.getElementById('nextBtn2'); 
+    const prevBtn2 = document.getElementById('prevBtn2');
+
+    function rotateSlider2(direction = 1) {
+        if (isAnimating2 || !card2) return;
+        isAnimating2 = true;
+
+        currentIndex2 = (currentIndex2 + direction + images2.length) % images2.length;
+        const nextIsBack = (Math.abs(rotation2 / 180) % 2 === 0);
+        
+        if (nextIsBack) {
+            imgBack2.src = images2[currentIndex2];
+        } else {
+            imgFront2.src = images2[currentIndex2];
+        }
+
+        rotation2 += 180 * direction;
+        card2.style.transform = `rotateY(${rotation2}deg)`;
+
+        setTimeout(() => { isAnimating2 = false; }, 800);
+    }
+
+    function startTimer2() {
+        stopTimer2();
+        autoTimer2 = setInterval(() => rotateSlider2(1), 3000);
+    }
+
+    function stopTimer2() {
+        if (autoTimer2) clearInterval(autoTimer2);
+    }
+
+    function resetTimer2() {
+        startTimer2();
+    }
+
+    // 初期画像のセット
+    if(imgFront2) imgFront2.src = images2[0];
+    if(imgBack2) imgBack2.src = images2[1];
+
+    // ボタンの動作（IDがnextBtn2などになっている場合）
+    if(nextBtn2) nextBtn2.onclick = () => { rotateSlider2(1); resetTimer2(); };
+    if(prevBtn2) prevBtn2.onclick = () => { rotateSlider2(-1); resetTimer2(); };
+
+    if(card2) {
+        let startX2 = 0;
+        card2.addEventListener('mousedown', e => startX2 = e.pageX);
+        card2.addEventListener('mouseup', e => {
+            let diff = startX2 - e.pageX;
+            if (Math.abs(diff) > 50) { rotateSlider2(diff > 0 ? 1 : -1); resetTimer2(); }
+        });
+
+        card2.addEventListener('touchstart', e => startX2 = e.touches[0].pageX);
+        card2.addEventListener('touchend', e => {
+            let diff = startX2 - e.changedTouches[0].pageX;
+            if (Math.abs(diff) > 50) { rotateSlider2(diff > 0 ? 1 : -1); resetTimer2(); }
+        });
+    }
+
+    startTimer2();
+
+    // タブ切り替え対策
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') startTimer2();
+        else stopTimer2();
+    });
+
+})(); // ← ここまでが2つ目専用の範囲
+
+
+//--------------------
+//  回転スライダー3
+//--------------------
+(function() {
+    const images3 = [
+        'images/slider-maminette-01_20260202.jpg',
+        'images/slider-maminette-02_20260202.jpg',
+        'images/slider-maminette-03_20260202.jpg',
+        'images/slider-maminette-04_20260202.jpg',
+        'images/slider-maminette-05_20260202.jpg',
+        'images/slider-maminette-06_20260202.jpg',
+        'images/slider-maminette-07_20260202.jpg',
+        'images/slider-maminette-08_20260202.jpg'
+    ];
+
+    let currentIndex3 = 0;
+    let rotation3 = 0;
+    let isAnimating3 = false;
+    let autoTimer3;
+
+    const card3 = document.getElementById('card3');
+    const imgFront3 = document.getElementById('img-front3');
+    const imgBack3 = document.getElementById('img-back3');
+    const nextBtn3 = document.getElementById('nextBtn3'); 
+    const prevBtn3 = document.getElementById('prevBtn3');
+
+    function rotateSlider3(direction = 1) {
+        if (isAnimating3 || !card3) return;
+        isAnimating3 = true;
+
+        currentIndex3 = (currentIndex3 + direction + images3.length) % images3.length;
+        const nextIsBack = (Math.abs(rotation3 / 180) % 2 === 0);
+        
+        if (nextIsBack) {
+            imgBack3.src = images3[currentIndex3];
+        } else {
+            imgFront3.src = images3[currentIndex3];
+        }
+
+        rotation3 += 180 * direction;
+        card3.style.transform = `rotateY(${rotation3}deg)`;
+
+        setTimeout(() => { isAnimating3 = false; }, 800);
+    }
+
+    function startTimer3() {
+        stopTimer3();
+        autoTimer3 = setInterval(() => rotateSlider3(1), 3000);
+    }
+
+    function stopTimer3() {
+        if (autoTimer3) clearInterval(autoTimer3);
+    }
+
+    if(imgFront3) imgFront3.src = images3[0];
+    if(imgBack3) imgBack3.src = images3[1];
+
+    if(nextBtn3) nextBtn3.onclick = () => { rotateSlider3(1); startTimer3(); };
+    if(prevBtn3) prevBtn3.onclick = () => { rotateSlider3(-1); startTimer3(); };
+
+    if(card3) {
+        let startX3 = 0;
+        card3.addEventListener('mousedown', e => startX3 = e.pageX);
+        card3.addEventListener('mouseup', e => {
+            let diff = startX3 - e.pageX;
+            if (Math.abs(diff) > 50) { rotateSlider3(diff > 0 ? 1 : -1); startTimer3(); }
+        });
+        card3.addEventListener('touchstart', e => startX3 = e.touches[0].pageX);
+        card3.addEventListener('touchend', e => {
+            let diff = startX3 - e.changedTouches[0].pageX;
+            if (Math.abs(diff) > 50) { rotateSlider3(diff > 0 ? 1 : -1); startTimer3(); }
+        });
+    }
+    startTimer3();
+})();// ← ここまでが3つ目専用の範囲
+
+
+//--------------------
+//  回転スライダー4
+//--------------------
+(function() {
+    const images4 = [
+        'images/slider-beaut-01_20260202.jpg',
+        'images/slider-beaut-02_20260202.jpg',
+        'images/slider-beaut-03_20260202.jpg',
+        'images/slider-beaut-04_20260202.jpg',
+        'images/slider-beaut-05_20260202.jpg',
+        'images/slider-beaut-06_20260202.jpg',
+        'images/slider-beaut-07_20260202.jpg',
+        'images/slider-beaut-08_20260202.jpg'
+    ];
+
+    let currentIndex4 = 0;
+    let rotation4 = 0;
+    let isAnimating4 = false;
+    let autoTimer4;
+
+    const card4 = document.getElementById('card4');
+    const imgFront4 = document.getElementById('img-front4');
+    const imgBack4 = document.getElementById('img-back4');
+    const nextBtn4 = document.getElementById('nextBtn4'); 
+    const prevBtn4 = document.getElementById('prevBtn4');
+
+    function rotateSlider4(direction = 1) {
+        if (isAnimating4 || !card4) return;
+        isAnimating4 = true;
+
+        currentIndex4 = (currentIndex4 + direction + images4.length) % images4.length;
+        const nextIsBack = (Math.abs(rotation4 / 180) % 2 === 0);
+        
+        if (nextIsBack) {
+            imgBack4.src = images4[currentIndex4];
+        } else {
+            imgFront4.src = images4[currentIndex4];
+        }
+
+        rotation4 += 180 * direction;
+        card4.style.transform = `rotateY(${rotation4}deg)`;
+
+        setTimeout(() => { isAnimating4 = false; }, 800);
+    }
+
+    function startTimer4() {
+        stopTimer4();
+        autoTimer4 = setInterval(() => rotateSlider4(1), 3000);
+    }
+
+    function stopTimer4() {
+        if (autoTimer4) clearInterval(autoTimer4);
+    }
+
+    if(imgFront4) imgFront4.src = images4[0];
+    if(imgBack4) imgBack4.src = images4[1];
+
+    if(nextBtn4) nextBtn4.onclick = () => { rotateSlider4(1); startTimer4(); };
+    if(prevBtn4) prevBtn4.onclick = () => { rotateSlider4(-1); startTimer4(); };
+
+    if(card4) {
+        let startX4 = 0;
+        card4.addEventListener('mousedown', e => startX4 = e.pageX);
+        card4.addEventListener('mouseup', e => {
+            let diff = startX4 - e.pageX;
+            if (Math.abs(diff) > 50) { rotateSlider4(diff > 0 ? 1 : -1); startTimer4(); }
+        });
+        card4.addEventListener('touchstart', e => startX4 = e.touches[0].pageX);
+        card4.addEventListener('touchend', e => {
+            let diff = startX4 - e.changedTouches[0].pageX;
+            if (Math.abs(diff) > 50) { rotateSlider4(diff > 0 ? 1 : -1); startTimer4(); }
+        });
+    }
+    startTimer4();
+})();

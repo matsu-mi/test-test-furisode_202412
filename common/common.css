@@ -625,7 +625,7 @@ a p img {
 .slider-perspective {
     perspective: 1200px;
     width: 420px;
-    height: 500px;
+    height: 550px;
     position: relative;
     margin: 0 auto; /* 中央寄せ */
     /* ★ここがポイント：親に内側の余白を作る */
@@ -667,7 +667,7 @@ a p img {
     height: 100%;
     backface-visibility: hidden;
     /* 綺麗な楕円形 */
-    border-radius: 70% / 20%; 
+    border-radius: 70% / 15%; 
     overflow: hidden;
     background: #fff;
     box-shadow: 0 4px 4px rgba(0,0,0,0.3);
