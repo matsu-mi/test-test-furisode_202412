@@ -628,6 +628,11 @@ a p img {
     height: 500px;
     position: relative;
     margin: 0 auto; /* 中央寄せ */
+    /* ★ここがポイント：親に内側の余白を作る */
+    padding: 10px 0; 
+    /* 枠からはみ出した画像を隠す設定を解除（または調整） */
+    overflow: visible; 
+    border-radius: 60px; /* PCでも角丸にする場合 */
 }
 
 /* スライダー内の画像設定 */
@@ -638,6 +643,14 @@ a p img {
   object-fit: cover; 
   /* もし画像全体を絶対に見せたい場合は contain にしますが、coverの方がデザインは綺麗です */
   border-radius: 60px;
+  /* --- 3Dアニメーション時の「上下の切れ・チラつき」対策 --- */
+  /* 1. 描画をGPU（画像処理エンジン）に任せて安定させる */
+  transform: translateZ(0) scale(1.005); 
+  /* 2. 回転中の裏面の計算を省いて負荷を減らす */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* 3. 画像の縁を滑らかにする */
+  will-change: transform;
 }
 
 .slider-card {
